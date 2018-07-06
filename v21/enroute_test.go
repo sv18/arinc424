@@ -5,17 +5,17 @@ import (
 	"testing"
 )
 
-func TestLoadAirport(t *testing.T) {
+func TestLoadEnroute(t *testing.T) {
 
-	a, err := LoadAirport("arincdata-full.dat")
+	a, err := LoadEnroute("arincdata-full.dat")
 	if err != nil {
 		t.Error(err)
 		return
 	}
 
-	for _, r := range a {
-		fmt.Printf("%#v\n", r)
-	}
+	// for _, r := range a {
+	// 	fmt.Printf("%#v\n", r)
+	// }
 	fmt.Println("total records ::::::::::::::::", len(a))
 
 }

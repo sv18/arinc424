@@ -2,6 +2,13 @@
 
 package arinc
 
+import (
+	"io/ioutil"
+	"os"
+
+	fixedwidth "github.com/ianlopshire/go-fixedwidth"
+)
+
 const ( // record type codes: ref specs section 5.2
 	recordTypeStandard = "S"
 	recordTypeTailored = "T"
@@ -76,3 +83,23 @@ const (
 	subSectionCodeFIR_UIR             = "F"
 	subSectionCodeRestrictiveAirspace = "R"
 )
+
+func load(datFilePath string, out interface{}) error {
+
+	f, err := os.Open(datFilePath) //TODO: handle error
+	if err != nil {
+		return err
+	}
+
+	b, err := ioutil.ReadAll(f) //TODO: handle error
+	if err != nil {
+		return err
+	}
+
+	err = fixedwidth.Unmarshal(b, out)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

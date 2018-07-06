@@ -1,12 +1,5 @@
 package arinc
 
-import (
-	"io/ioutil"
-	"os"
-
-	fixedwidth "github.com/ianlopshire/go-fixedwidth"
-)
-
 // Airport Primary Record structure
 // refer: section 4.1.7.1 Airport Primary Records
 type Airport struct {
@@ -17,7 +10,7 @@ type Airport struct {
 	ICAOCode                       string `fixed:"11,12"` //11 thru 12 (2)
 	SubSecCode                     string `fixed:"13,13"`
 	AtaIataDesignator              string `fixed:"14,16"`   //14 thru 16 (3)
-	ContinuationRecordNumber       string `fixed:"22,22"`   // 22 (1)
+	ContinuationRecordNo           string `fixed:"22,22"`   // 22 (1)
 	SpeedLimitAltitude             string `fixed:"23,27"`   // 23 thru 27 (5)
 	LongestRunway                  string `fixed:"28,30"`   //28 thru 30 (3)
 	IFRCapability                  string `fixed:"31,31"`   // 31 (1)
@@ -43,18 +36,8 @@ type Airport struct {
 
 func LoadAirport(datFilePath string) ([]Airport, error) {
 
-	f, err := os.Open(datFilePath) //TODO: handle error
-	if err != nil {
-		return nil, err
-	}
-
-	b, err := ioutil.ReadAll(f) //TODO: handle error
-	if err != nil {
-		return nil, err
-	}
-
 	var temp []Airport
-	err = fixedwidth.Unmarshal(b, &temp)
+	err := load(datFilePath, &temp)
 	if err != nil {
 		return nil, err
 	}
