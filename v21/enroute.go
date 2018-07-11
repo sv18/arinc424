@@ -14,8 +14,8 @@ type Enroute struct {
 	SequenceNumber          string `fixed:"26,29"` // 26 thru 29 (4)
 	FixIdentifier           string `fixed:"30,34"` // 30 thru 34 (5)
 	ICAOCode                string `fixed:"35,36"` // 35 thru 36 (2)
-	SectionCode2            string `fixed:"37,37"` // 37 (1)
-	SubSectionCode2         string `fixed:"38,38"` // 38 (1)
+	SectionCode2            string `fixed:"37,37"` // 37 (1) // SectionCode
+	SubSectionCode2         string `fixed:"38,38"` // 38 (1) // Subsection
 	ContinuationRecordNo    string `fixed:"39,39"` // 39 (1)
 	WaypointDescriptionCode string `fixed:"40,43"` // 40 thru 43 (4)
 	//TODO: add the below fields

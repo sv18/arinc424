@@ -6,9 +6,9 @@ type Airport struct {
 	RecordType                     string `fixed:"1,1"`
 	CustomerAreaCode               string `fixed:"2,4"`
 	SectionCode                    string `fixed:"5,5"`
-	AirportIcaoIdentifier          string `fixed:"7,10"`  //7 thru 10 (4)
+	AirportICAOIdentifier          string `fixed:"7,10"`  //7 thru 10 (4)
 	ICAOCode                       string `fixed:"11,12"` //11 thru 12 (2)
-	SubSecCode                     string `fixed:"13,13"`
+	SubsectionCode                 string `fixed:"13,13"`
 	AtaIataDesignator              string `fixed:"14,16"`   //14 thru 16 (3)
 	ContinuationRecordNo           string `fixed:"22,22"`   // 22 (1)
 	SpeedLimitAltitude             string `fixed:"23,27"`   // 23 thru 27 (5)
@@ -44,7 +44,7 @@ func LoadAirport(datFilePath string) ([]Airport, error) {
 
 	var a []Airport
 	for _, r := range temp {
-		if r.SectionCode == sectionCodeAirport { //TODO: add the correct logic to filter the airports
+		if r.SectionCode == sectionCodeAirport { //TODO: add the correct logic to filter the airports. Look like we nned to filter subcode = A filter
 			a = append(a, r)
 		}
 	}
