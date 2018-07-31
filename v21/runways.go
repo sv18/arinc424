@@ -39,7 +39,7 @@ func LoadRunways(datFilePath string) ([]Runway, error) {
 
 	var a []Runway
 	for _, r := range temp {
-		if r.SectionCode == sectionCodeAirport && r.SubsectionCode == subSectionCodeRunways { 
+		if r.SectionCode == sectionCodeAirport && r.SubsectionCode == subSectionCodeRunways {
 			a = append(a, r)
 		}
 	}
